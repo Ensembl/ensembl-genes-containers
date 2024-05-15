@@ -1,4 +1,4 @@
-# CPC2 Docker image
+# STAR Docker image
 
 Dockerfile and commands to create the STAR Docker image and run it as a Singularity (tag 1.0.1).
 
