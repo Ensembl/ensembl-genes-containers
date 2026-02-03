@@ -1,0 +1,109 @@
+# .gitlab-ci.yml – multi-container mono-repo
+#
+# Structure:
+#   Containers/<name>/Dockerfile
+#
+# Each container is pushed to:
+#   $CI_REGISTRY_IMAGE/<name>:latest
+#   $CI_REGISTRY_IMAGE/<name>:<commit-sha>
+#
+# To add a new container:
+#   1. Create Containers/<name>/Dockerfile
+#   2. Copy a job block below and update CONTAINER_NAME and the changes path
+
+image: docker:20.10
+services:
+  - name: docker:dind
+    alias: docker
+
+variables:
+  DOCKER_DRIVER: overlay2
+
+stages:
+  - build
+
+# ── Template (hidden job) ────────────────────────────────────────────
+.build_template:
+  stage: build
+  script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" "$CI_REGISTRY"
+    - docker build
+        -t "$CI_REGISTRY_IMAGE/$CONTAINER_NAME:$CI_COMMIT_SHA"
+        -t "$CI_REGISTRY_IMAGE/$CONTAINER_NAME:latest"
+        "Containers/$CONTAINER_NAME"
+    - docker push "$CI_REGISTRY_IMAGE/$CONTAINER_NAME:$CI_COMMIT_SHA"
+    - docker push "$CI_REGISTRY_IMAGE/$CONTAINER_NAME:latest"
+
+# ── Container jobs ───────────────────────────────────────────────────
+# Each job only runs when its own Dockerfile (or any file in its dir) changes.
+
+build_agat:
+  extends: .build_template
+  variables:
+    CONTAINER_NAME: agat
+  rules:
+    - changes:
+        - Containers/agat/**/*
+        - Containers/agat/*
+      when: always
+
+build_braker2:
+  extends: .build_template
+  variables:
+    CONTAINER_NAME: braker2
+  rules:
+    - changes:
+        - Containers/braker2/**/*
+        - Containers/braker2/*
+      when: always
+
+build_cpc2:
+  extends: .build_template
+  variables:
+    CONTAINER_NAME: cpc2
+  rules:
+    - changes:
+        - Containers/cpc2/**/*
+        - Containers/cpc2/*
+      when: always
+
+build_ncrna-mirna:
+  extends: .build_template
+  variables:
+    CONTAINER_NAME: ncrna-mirna
+  rules:
+    - changes:
+        - Containers/ncrna-mirna/**/*
+        - Containers/ncrna-mirna/*
+      when: always
+
+build_red:
+  extends: .build_template
+  variables:
+    CONTAINER_NAME: red
+  rules:
+    - changes:
+        - Containers/red/**/*
+        - Containers/red/*
+      when: always
+
+build_star:
+  extends: .build_template
+  variables:
+    CONTAINER_NAME: star
+  rules:
+    - changes:
+        - Containers/star/**/*
+        - Containers/star/*
+      when: always
+
+# ── Add more containers below ────────────────────────────────────────
+# build_<name>:
+#   extends: .build_template
+#   variables:
+#     CONTAINER_NAME: <name>
+#   rules:
+#     - changes:
+#         - Containers/<name>/**/*
+#         - Containers/<name>/*
+#       when: always
