@@ -97,6 +97,26 @@ build_star:
         - Containers/star/*
       when: always
 
+build_ensembl-genes:
+  extends: .build_template
+  variables:
+    CONTAINER_NAME: ensembl-genes
+  rules:
+    - changes:
+        - Containers/ensembl-genes/**/*
+        - Containers/ensembl-genes/*
+      when: always
+
+build_ensembl-genes-qc-dev:
+  extends: .build_template
+  variables:
+    CONTAINER_NAME: ensembl-genes-qc-dev
+  rules:
+    - changes:
+        - Containers/ensembl-genes-qc-dev/**/*
+        - Containers/ensembl-genes-qc-dev/*
+      when: always
+
 # ── Add more containers below ────────────────────────────────────────
 # build_<name>:
 #   extends: .build_template
