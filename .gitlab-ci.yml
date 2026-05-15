@@ -37,26 +37,6 @@ stages:
 # ── Container jobs ───────────────────────────────────────────────────
 # Each job only runs when its own Dockerfile (or any file in its dir) changes.
 
-build_agat:
-  extends: .build_template
-  variables:
-    CONTAINER_NAME: agat
-  rules:
-    - changes:
-        - Containers/agat/**/*
-        - Containers/agat/*
-      when: always
-
-build_braker2:
-  extends: .build_template
-  variables:
-    CONTAINER_NAME: braker2
-  rules:
-    - changes:
-        - Containers/braker2/**/*
-        - Containers/braker2/*
-      when: always
-
 build_cpc2:
   extends: .build_template
   variables:
@@ -75,16 +55,6 @@ build_ncrna-mirna:
     - changes:
         - Containers/ncrna-mirna/**/*
         - Containers/ncrna-mirna/*
-      when: always
-
-build_red:
-  extends: .build_template
-  variables:
-    CONTAINER_NAME: red
-  rules:
-    - changes:
-        - Containers/red/**/*
-        - Containers/red/*
       when: always
 
 build_star:
@@ -115,6 +85,16 @@ build_ensembl-genes-qc-dev:
     - changes:
         - Containers/ensembl-genes-qc-dev/**/*
         - Containers/ensembl-genes-qc-dev/*
+      when: always
+
+build_mirmachine_dev:
+  extends: .build_template
+  variables:
+    CONTAINER_NAME: mirmachine-dev
+  rules:
+    - changes:
+        - Containers/mirmachine/**/*
+        - Containers/mirmachine/*
       when: always
 
 # ── Add more containers below ────────────────────────────────────────
