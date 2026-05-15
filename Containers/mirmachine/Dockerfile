@@ -10,7 +10,7 @@ ARG MIRMACHINE_REPO=https://github.com/sinanugur/MirMachine.git
 ARG MIRMACHINE_REF=14e33308cbeaed495c24254f60bd8c52232d7b2e
 
 RUN python -m pip install --no-cache-dir --no-deps --force-reinstall \
-    "git+${MIRMACHINE_REPO}@${MIRMACHINE_REF}"
+    "${MIRMACHINE_REPO%".git"}/archive/${MIRMACHINE_REF}.tar.gz"
 
 WORKDIR /work
 
