@@ -90,7 +90,7 @@ build_ensembl-genes-qc-dev:
 build_mirmachine_dev:
   extends: .build_template
   variables:
-    CONTAINER_NAME: mirmachine-dev
+    CONTAINER_NAME: mirmachine
   rules:
     - changes:
         - Containers/mirmachine/**/*
