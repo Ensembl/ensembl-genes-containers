@@ -64,7 +64,7 @@ build_ensembl-genes:
     CONTAINER_NAME: ensembl-genes
   rules:
     - changes:
-        - Containers/ensembl-genes/**/*
+        - Containers/ensembl-genes/*
 
 build_ensembl-genes-qc-dev:
   extends: .build_template
@@ -72,7 +72,7 @@ build_ensembl-genes-qc-dev:
     CONTAINER_NAME: ensembl-genes-qc-dev
   rules:
     - changes:
-        - Containers/ensembl-genes-qc-dev/**/*
+        - Containers/ensembl-genes-qc-dev/*
 
 build_mirmachine_dev:
   extends: .build_template
@@ -80,7 +80,7 @@ build_mirmachine_dev:
     CONTAINER_NAME: mirmachine
   rules:
     - changes:
-        - Containers/mirmachine/**/*
+        - Containers/mirmachine/*
 
 build_omark:
   extends: .build_template
@@ -88,4 +88,4 @@ build_omark:
     CONTAINER_NAME: omark
   rules:
     - changes:
-        - Containers/omark/**/*
+        - Containers/omark/*
