@@ -81,3 +81,11 @@ build_mirmachine_dev:
   rules:
     - changes:
         - Containers/mirmachine/**/*
+
+build_omark:
+  extends: .build_template
+  variables:
+    CONTAINER_NAME: omark
+  rules:
+    - changes:
+        - Containers/omark/**/*
