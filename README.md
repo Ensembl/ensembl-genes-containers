@@ -24,6 +24,7 @@ Containers currently defined in this repo:
 | Name | Dockerfile |
 |------|-----------|
 | cpc2 | [Containers/cpc2/Dockerfile](Containers/cpc2/Dockerfile) |
+| choros | [Containers/choros/Dockerfile](Containers/choros/Dockerfile) |
 | ensembl-genes | [Containers/ensembl-genes/Dockerfile](Containers/ensembl-genes/Dockerfile) |
 | ensembl-genes-qc-dev | [Containers/ensembl-genes-qc-dev/Dockerfile](Containers/ensembl-genes-qc-dev/Dockerfile) |
 | mirmachine | [Containers/mirmachine/Dockerfile](Containers/mirmachine/Dockerfile) |

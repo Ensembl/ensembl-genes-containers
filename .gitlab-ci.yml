@@ -89,3 +89,11 @@ build_omark:
   rules:
     - changes:
         - Containers/omark/*
+
+build_choros:
+  extends: .build_template
+  variables:
+    CONTAINER_NAME: choros
+  rules:
+    - changes:
+        - Containers/choros/**/*
