@@ -39,6 +39,7 @@ build_cpc2:
   variables:
     CONTAINER_NAME: cpc2
   rules:
+    - if: '$CI_PIPELINE_SOURCE == "trigger"'
     - changes:
         - Containers/cpc2/**/*
 
@@ -47,6 +48,7 @@ build_ncrna-mirna:
   variables:
     CONTAINER_NAME: ncrna-mirna
   rules:
+    - if: '$CI_PIPELINE_SOURCE == "trigger"'
     - changes:
         - Containers/ncrna-mirna/**/*
 
@@ -55,6 +57,7 @@ build_star:
   variables:
     CONTAINER_NAME: star
   rules:
+    - if: '$CI_PIPELINE_SOURCE == "trigger"'
     - changes:
         - Containers/star/**/*
 
@@ -63,6 +66,7 @@ build_ensembl-genes:
   variables:
     CONTAINER_NAME: ensembl-genes
   rules:
+    - if: '$CI_PIPELINE_SOURCE == "trigger"'
     - changes:
         - Containers/ensembl-genes/*
 
@@ -71,6 +75,7 @@ build_ensembl-genes-qc-dev:
   variables:
     CONTAINER_NAME: ensembl-genes-qc-dev
   rules:
+    - if: '$CI_PIPELINE_SOURCE == "trigger"'
     - changes:
         - Containers/ensembl-genes-qc-dev/*
 
@@ -79,6 +84,7 @@ build_mirmachine_dev:
   variables:
     CONTAINER_NAME: mirmachine
   rules:
+    - if: '$CI_PIPELINE_SOURCE == "trigger"'
     - changes:
         - Containers/mirmachine/*
 
@@ -87,6 +93,7 @@ build_omark:
   variables:
     CONTAINER_NAME: omark
   rules:
+    - if: '$CI_PIPELINE_SOURCE == "trigger"'
     - changes:
         - Containers/omark/*
 
@@ -95,5 +102,6 @@ build_choros:
   variables:
     CONTAINER_NAME: choros
   rules:
+    - if: '$CI_PIPELINE_SOURCE == "trigger"'
     - changes:
         - Containers/choros/**/*
