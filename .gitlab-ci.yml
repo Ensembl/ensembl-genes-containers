@@ -1,5 +1,5 @@
 # .gitlab-ci.yml – multi-container mono-repo
-#
+# runner dind
 # Structure:
 #   Containers/<name>/Dockerfile
 #
