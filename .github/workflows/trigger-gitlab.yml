@@ -10,9 +10,28 @@ on:
 jobs:
   trigger-gitlab:
     runs-on: ubuntu-latest
-
+    
     steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Detect changed container directories
+        id: changes
+        run: |
+          CONTAINERS=$(git diff --name-only HEAD^ HEAD \
+            | grep '^Containers/' \
+            | cut -d/ -f2 \
+            | sort -u \
+            | tr '\n' ',' \
+            | sed 's/,$//')
+
+          echo "Changed containers: $CONTAINERS"
+
+          echo "containers=$CONTAINERS" >> $GITHUB_OUTPUT
+          
       - name: Trigger GitLab
+        if: steps.changes.outputs.containers != ''
         run: |
           RESPONSE=$(curl \
             --silent \
@@ -21,6 +40,7 @@ jobs:
             --request POST \
             --form token="${{ secrets.GITLAB_TRIGGER_TOKEN }}" \
             --form ref="${{ github.ref_name }}" \
+            --form "variables[CHANGED_CONTAINERS]=${{ steps.changes.outputs.containers }}" \
             "https://gitlab.ebi.ac.uk/api/v4/projects/${{ secrets.GITLAB_PROJECT_ID }}/trigger/pipeline")
       
           echo "$RESPONSE"
