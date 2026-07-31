@@ -19,7 +19,7 @@ RUN apt-get autoremove && apt-get clean
 RUN pip install --no-cache-dir 'biopython' 
 RUN pip install --no-cache-dir 'numpy' 
 
-#Download CPC2 repo on GitHub
+#Download CPC2 repo on GitHub.
 RUN wget https://github.com/gao-lab/CPC2_standalone/archive/refs/tags/v1.0.1.tar.gz
 RUN gzip -dc v1.0.1.tar.gz | tar xf -
 RUN cd /CPC2_standalone-1.0.1/libs/libsvm/ && gzip -dc libsvm-3.18.tar.gz | tar xf - && cd libsvm-3.18 && make clean && make 
