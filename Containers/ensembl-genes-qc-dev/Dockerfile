@@ -7,7 +7,7 @@ LABEL org.opencontainers.image.source="https://github.com/Ensembl/ensembl-genes"
 
 ARG DEBIAN_FRONTEND=noninteractive
 ARG ENSEMBL_GENES_REPO=https://github.com/Ensembl/ensembl-genes.git
-ARG ENSEMBL_GENES_REF=feature/annotation_qc
+ARG ENSEMBL_GENES_REF=feature/annotation-qc
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     bash \
