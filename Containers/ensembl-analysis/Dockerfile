@@ -61,6 +61,9 @@ RUN git clone --depth 1 --branch "${ENSEMBL_REF}" https://github.com/Ensembl/ens
     && git clone --depth 1 --branch "${GENES_REF}" https://github.com/Ensembl/ensembl-genes.git
 
 RUN set -eux; \
+    find /opt/ensembl/ensembl-analysis/scripts /opt/ensembl/ensembl-genes/src/perl -type f -name '*.pl' -exec ln -sf {} /usr/local/bin/ \;
+
+RUN set -eux; \
     for repo in ensembl ensembl-analysis ensembl-genes; do \
         if [ -f "/opt/ensembl/${repo}/cpanfile" ]; then \
             cd "/opt/ensembl/${repo}"; \
