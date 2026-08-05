@@ -105,3 +105,12 @@ build_choros:
     - if: '$CI_PIPELINE_SOURCE == "trigger"'
     - changes:
         - Containers/choros/**/*
+
+build_ensembl-analysis:
+  extends: .build_template
+  variables:
+    CONTAINER_NAME: ensembl-analysis
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "trigger"'
+    - changes:
+        - Containers/ensembl-analysis/**/*
