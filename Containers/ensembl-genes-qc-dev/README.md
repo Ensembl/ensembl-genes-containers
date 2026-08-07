@@ -1,31 +1,31 @@
 # ensembl-genes-qc-dev container
 
-Preview container for the QC work currently living on the `feature/run_metrics`
-branch of `ensembl-genes`.
+Preview container for the annotation QC work currently living on the
+`feature/annotation-qc` branch of `ensembl-genes`.
 
 This image is intentionally separate from the stable `ensembl-genes` image. It
 bundles:
 
-- the `feature/run_metrics` branch checkout of `Ensembl/ensembl-genes`
+- the `feature/annotation-qc` branch checkout of `Ensembl/ensembl-genes`
 - Python dependencies needed for the QC parsing code
 
-It exposes a small dispatcher:
+The image is development-only, but exposes the package-owned QC CLI:
 
 ```bash
-ensembl-genes-qc-dev <command> [args...]
+annotation-qc <command> [args...]
 ```
 
 Available commands:
 
 - `parse-agat`
-- `paths`
+- `parse-interpro`
 
 Examples:
 
 ```bash
-docker run --rm IMAGE help
-docker run --rm IMAGE paths
-docker run --rm -v "$PWD:$PWD" -w "$PWD" IMAGE parse-agat --help
+docker run --rm IMAGE annotation-qc --help
+docker run --rm IMAGE annotation-qc parse-agat --help
+docker run --rm IMAGE annotation-qc parse-interpro --help
 ```
 
 This is a preview/development image intended to support workflow integration
