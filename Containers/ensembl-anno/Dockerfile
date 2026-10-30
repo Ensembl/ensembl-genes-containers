@@ -18,7 +18,7 @@ RUN apt-get update && \
 
 # Clone and build
 WORKDIR /build
-RUN git clone --depth 1 --branch feature/github_actions https://github.com/Ensembl/ensembl-anno.git
+RUN git clone --depth 1 --branch fix/repeatmasker https://github.com/Ensembl/ensembl-anno.git
 
 # Build the wheel - cd into the cloned repository
 WORKDIR /build/ensembl-anno
