@@ -114,3 +114,12 @@ build_ensembl-analysis:
     - if: '$CI_PIPELINE_SOURCE == "trigger"'
     - changes:
         - Containers/ensembl-analysis/**/*
+
+build_ensembl-anno-dev:
+  extends: .build_template
+  variables:
+    CONTAINER_NAME: ensembl-anno-dev
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "trigger"'
+    - changes:
+        - Containers/ensembl-anno-dev/**/*          
